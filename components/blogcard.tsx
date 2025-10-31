@@ -3,8 +3,10 @@ import Link from 'next/link';
 import React from 'react'
 import calendar from "@/public/calendar.svg";
 import { BlogPost } from '@/interfaces';
-
+import {motion} from 'motion/react';
+import { usePathname } from 'next/navigation';
 const BlogCard = ({bl}:{bl: BlogPost}) => {
+  const pathname = usePathname();
   return (
     <Link
       href={bl.node.url}
@@ -13,42 +15,56 @@ const BlogCard = ({bl}:{bl: BlogPost}) => {
       rel="noopener noreferrer"
       className=" rounded-xl p-2 border border-black/5 shadow-sm hover:shadow-lg duration-500"
     >
-      <Image
-        src={bl.node.coverImage.url}
-        width={400}
-        height={210}
-        alt="project"
-        className="rounded-xl object-contain w-full h-2/5"
-      />
-      <div className=" p-3">
-        <div className="flex justify-between items-start">
-          <p className="font-bold text-lg flex-2 line-clamp-2">
-            {bl.node.title}
-          </p>
-          <div className="flex gap-3 flex-1 justify-end">
-            <p>GIT</p>
-            <p>LINK</p>
+      <motion.div
+        key={bl.node.slug + pathname}
+        initial={{ opacity: 0, scale:0.7 }}
+        animate={{ opacity: 1, scale:1 }}
+        viewport={{ once: true }}
+        whileInView={{ opacity: 1, scale:1 }}
+        transition={{ duration: 0.3 }}
+      >
+        <Image
+          src={bl.node.coverImage.url}
+          width={400}
+          height={210}
+          alt="project"
+          className="rounded-xl object-contain w-full h-2/5"
+        />
+        <div className=" p-3">
+          <div className="flex justify-between items-start">
+            <p className="font-bold text-lg flex-2 line-clamp-2">
+              {bl.node.title}
+            </p>
+            <div className="flex gap-3 flex-1 justify-end">
+              <p>GIT</p>
+              <p>LINK</p>
+            </div>
           </div>
-        </div>
 
-        <p className="mt-3 text-zinc-400 font-medium">{bl.node.brief}</p>
-        <div className="flex size-3"></div>
-        <div className="flex justify-between items-center">
-          <div className="flex gap-2 items-center">
-            <Image src={calendar} alt="calendar icon" height={20} width={20} />
-            <p className=" text-zinc-400 font-medium text-sm">
-              {new Date(bl.node.publishedAt).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "short",
-                day: "2-digit",
-              })}
+          <p className="mt-3 text-zinc-400 font-medium">{bl.node.brief}</p>
+          <div className="flex size-3"></div>
+          <div className="flex justify-between items-center">
+            <div className="flex gap-2 items-center">
+              <Image
+                src={calendar}
+                alt="calendar icon"
+                height={20}
+                width={20}
+              />
+              <p className=" text-zinc-400 font-medium text-sm">
+                {new Date(bl.node.publishedAt).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "short",
+                  day: "2-digit",
+                })}
+              </p>
+            </div>
+            <p className="text-sm text-zinc-400">
+              {bl.node.readTimeInMinutes} mins read
             </p>
           </div>
-          <p className="text-sm text-zinc-400">
-            {bl.node.readTimeInMinutes} mins read
-          </p>
         </div>
-      </div>
+      </motion.div>
     </Link>
   );
 }
