@@ -12,8 +12,6 @@ import FeaturedExperience from "@/components/experience";
 import FeaturedProjects from "@/components/projects";
 import Github from "@/components/github";
 import FeaturedBlogs from "@/components/blogs";
-import { BlogPost, Experience, Project } from "@/interfaces";
-import StoreInitializer from "@/components/storeInitializer";
 const IconButton = lazy(() => import('@/components/iconbutton'));
 
 
@@ -22,9 +20,6 @@ const Home = async() => {
 
 
   return (
-    <div className="">
-
-      {/* <div style={{ height: "8vh" }} /> */}
       <div>
         <Image
           src={"/amritlogo.png"}
@@ -100,7 +95,6 @@ const Home = async() => {
         <Github />
         <FeaturedBlogs />
       </div>
-    </div>
   );
 };
 

@@ -15,7 +15,7 @@ const Blog = () => {
       <p className="font-extrabold text-2xl mb-7">
         All Blogs{" "}
         <span className="font-semibold text-base  md:text-sm text-zinc-400">
-          ({blogs.length} projects)
+          ({blogs.length} blogs)
         </span>
       </p>
       <div className="grid grid-cols md:grid-cols-2 gap-8">

@@ -6,6 +6,7 @@ import Link from "next/link";
 import Footer from "@/components/footer";
 import { BlogPost, Experience, Project } from "@/interfaces";
 import StoreInitializer from "@/components/storeInitializer";
+import Transition from "@/components/transition";
 
 const poppinsFont = Poppins({
   variable: "--font-poppins",
@@ -131,16 +132,16 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body
-        className={` ${poppinsFont.variable} ${pixelifyFont.variable} ${hankenFont.variable} antialiased text-zinc-700`}
+        className={` ${poppinsFont.variable} ${pixelifyFont.variable} ${hankenFont.variable} antialiased text-zinc-700 bg-white`}
       >
         <>
           <div className="container mx-auto max-w-4xl px-4 py-3">
-            <StoreInitializer 
+            <StoreInitializer
               experiences={experiences}
               projects={projects}
               blogs={blogs}
             />
-            <div className="flex gap-4 align-middle items-center py-5 backdrop-blur-sm rounded-b-xxl sticky top-0">
+            <div className="flex gap-4 align-middle items-center py-5 z-10 backdrop-blur-sm rounded-b-xxl sticky top-0">
               <div className="flex gap-3 align-middle">
                 <Link href={"/"}>
                   <Image
@@ -175,7 +176,9 @@ export default async function RootLayout({
               </div>
             </div>
             <div style={{ height: "8vh" }} />
-            <div className="px-3 md:px-10">{children}</div>
+            <div className="px-3 md:px-10">
+              <Transition>{children}</Transition>
+            </div>
             <Footer />
           </div>
         </>
