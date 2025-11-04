@@ -25,9 +25,9 @@ const Project = () => {
             className=" rounded-xl p-2 border border-black/5 shadow-sm hover:shadow-lg duration-500 "
           >
             <ProjectCard key={pr._id} pr={pr} />
-            <div style={{ height: "5vh" }}></div>
           </div>
         ))}
+        <div style={{ height: "5vh" }}></div>
       </div>
     </div>
   );
