@@ -53,14 +53,12 @@ export const metadata: Metadata = {
 
 
 async function fetchExperiences(): Promise<Experience[]> {
-  "use cache";
   const res = await fetch(process.env.BASE_URL + "/experience");
   const experiences: Experience[] = await res.json();
   return experiences;
 }
 
 async function fetchProjects(): Promise<Project[]> {
-  "use cache";
   const res = await fetch(process.env.BASE_URL + "/project");
   const projects: Project[] = await res.json();
   return projects;
